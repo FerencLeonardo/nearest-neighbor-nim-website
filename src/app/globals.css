@@ -33,9 +33,13 @@ body {
   outline-offset: 2px;
 }
 
-/* The ruled-notebook margin line down the content's left edge */
+/* The ruled-notebook margin line down the content's left edge. flex-1 lets
+   main stretch to fill the viewport (via the body's flex column) so the
+   line still reaches the bottom of the page on short pages, while longer
+   pages still grow past the viewport as normal. */
 .margin-rule {
   position: relative;
+  flex: 1 1 auto;
 }
 @media (min-width: 768px) {
   .margin-rule::before {
