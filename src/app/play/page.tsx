@@ -2,11 +2,13 @@ import GameBoard from '@/components/GameBoard';
 
 export default function PlayPage() {
   return (
-    <main className="max-w-5xl mx-auto px-6 py-4 w-full">
-      <div className="mb-3">
-        <h1 className="text-2xl font-bold text-white mb-1">Play Nearest Neighbor Nim</h1>
-        <p className="text-slate-400 text-sm">
-          Build your graph, pick a difficulty, and challenge the computer.
+    <main className="margin-rule max-w-5xl mx-auto px-6 pt-5 pb-12 w-full">
+      <div className="mb-4">
+        <h1 className="font-display font-semibold text-ink text-[26px] mb-1">
+          Play Nearest Neighbor Nim
+        </h1>
+        <p className="text-graphite text-sm">
+          Draw the board, choose who opens, and play against the computer.
         </p>
       </div>
       <GameBoard />

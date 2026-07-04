@@ -22,20 +22,24 @@ export function getValidPileIndices(
   );
 }
 
+// `memo` entries stay valid only while adjMatrix is unchanged; callers that
+// pass one (e.g. a per-game cache) must reset it when the graph changes.
 export function getAiMove(
   piles: number[],
   adjMatrix: number[][],
   lastPile: number | null,
-  difficulty: Difficulty
+  difficulty: Difficulty,
+  memo?: Map<string, number>
 ): { pileIdx: number; stones: number } {
   const validPiles = getValidPileIndices(piles, adjMatrix, lastPile);
 
   if (Math.random() < OPTIMAL_CHANCE[difficulty]) {
+    const searchMemo = memo ?? new Map<string, number>();
     for (const pileIdx of validPiles) {
       for (let stones = 1; stones <= piles[pileIdx]; stones++) {
         const newPiles = [...piles];
         newPiles[pileIdx] -= stones;
-        if (nnnCalcFrom(newPiles, adjMatrix, pileIdx) === 0) {
+        if (nnnCalcFrom(newPiles, adjMatrix, pileIdx, searchMemo) === 0) {
           return { pileIdx, stones };
         }
       }
@@ -43,6 +47,6 @@ export function getAiMove(
   }
 
   const pileIdx = validPiles[Math.floor(Math.random() * validPiles.length)];
-  const stones = Math.ceil(Math.random() * piles[pileIdx]);
+  const stones = Math.floor(Math.random() * piles[pileIdx]) + 1;
   return { pileIdx, stones };
 }

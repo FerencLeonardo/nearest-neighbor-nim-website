@@ -1,23 +1,65 @@
 @import "tailwindcss";
 
-:root {
-  --background: #020617;
-  --foreground: #f1f5f9;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-paper: #FCFCF8;
+  --color-card: #FFFFFF;
+  --color-ink: #223056;
+  --color-pen: #2D53C8;
+  --color-pen-deep: #2445A8;
+  --color-pen-wash: #E9EEFB;
+  --color-redpen: #C6392B;
+  --color-red-wash: #FAEAE7;
+  --color-graphite: #5E6773;
+  --color-grid: #D5DEED;
+  --color-highlight: #F9E27D;
+  --color-highlight-wash: #FBF0B8;
+  --font-sans: var(--font-plex-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-stix), ui-serif, Georgia, serif;
+  --font-mono: var(--font-plex-mono), ui-monospace, SFMono-Regular, monospace;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
+  background: var(--color-paper);
+  color: var(--color-ink);
 }
 
-@keyframes result-fade-in {
+::selection {
+  background: var(--color-highlight);
+  color: var(--color-ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-pen);
+  outline-offset: 2px;
+}
+
+/* The ruled-notebook margin line down the content's left edge */
+.margin-rule {
+  position: relative;
+}
+@media (min-width: 768px) {
+  .margin-rule::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 6px;
+    width: 1px;
+    background: #efc7c0;
+  }
+}
+
+.answer-in {
+  animation: answer-in 0.18s ease;
+}
+
+@keyframes answer-in {
   from { opacity: 0; transform: translateY(4px); }
   to   { opacity: 1; transform: translateY(0);   }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .answer-in {
+    animation: none;
+  }
 }

@@ -2,11 +2,13 @@ import GraphBuilder from '@/components/GraphBuilder';
 
 export default function CalculatorPage() {
   return (
-    <main className="max-w-5xl mx-auto px-6 py-4 w-full">
-      <div className="mb-3">
-        <h1 className="text-2xl font-bold text-white mb-1">Nim Value Calculator</h1>
-        <p className="text-slate-400 text-sm">
-          Add nodes, connect them, set pile sizes, then calculate the Nim value.
+    <main className="margin-rule max-w-5xl mx-auto px-6 pt-5 pb-12 w-full">
+      <div className="mb-4">
+        <h1 className="font-display font-semibold text-ink text-[26px] mb-1">
+          Nim value calculator
+        </h1>
+        <p className="text-graphite text-sm">
+          Sketch a graph, set the piles, and compute the position&apos;s nim value.
         </p>
       </div>
       <GraphBuilder />

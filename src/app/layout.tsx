@@ -1,21 +1,30 @@
 import type { Metadata } from 'next';
-import { Geist, Geist_Mono } from 'next/font/google';
+import { STIX_Two_Text, IBM_Plex_Sans, IBM_Plex_Mono } from 'next/font/google';
 import './globals.css';
 import Header from '@/components/Header';
 
-const geistSans = Geist({
-  variable: '--font-geist-sans',
+const stix = STIX_Two_Text({
+  variable: '--font-stix',
   subsets: ['latin'],
+  style: ['normal', 'italic'],
 });
 
-const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
+const plexSans = IBM_Plex_Sans({
+  variable: '--font-plex-sans',
   subsets: ['latin'],
+  weight: ['400', '500', '600'],
+});
+
+const plexMono = IBM_Plex_Mono({
+  variable: '--font-plex-mono',
+  subsets: ['latin'],
+  weight: ['400', '500'],
 });
 
 export const metadata: Metadata = {
   title: 'Nearest Neighbor Nim',
-  description: 'Interactive Nearest Neighbor Nim calculator and game',
+  description:
+    'Sketch a graph, count the stones, and compute the nim value — or play against the computer.',
 };
 
 export default function RootLayout({
@@ -26,9 +35,9 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${stix.variable} ${plexSans.variable} ${plexMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-slate-950 text-slate-100">
+      <body className="min-h-full flex flex-col bg-paper text-ink font-sans">
         <Header />
         {children}
       </body>

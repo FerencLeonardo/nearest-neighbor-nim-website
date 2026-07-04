@@ -65,9 +65,10 @@ function calcMex(optionsValSet: Set<number>): number {
 export function nnnCalcFrom(
   piles: number[],
   adjMatrix: number[][],
-  fromPile: number
+  fromPile: number,
+  existingMemo?: Map<string, number>
 ): number {
-  const memo = new Map<string, number>();
+  const memo = existingMemo ?? new Map<string, number>();
   return nnnCalcR(piles, adjMatrix, fromPile, memo);
 }
 
@@ -78,10 +79,10 @@ export function getStartingPositions(
   const positions: Array<{ label: string; value: number }> = [];
   const pileStr = JSON.stringify(initialPiles);
 
-  for (const [key, value] of memo.entries()) {
-    const pileSizes = JSON.parse(key.slice(1));
-    if (JSON.stringify(pileSizes) === pileStr) {
-      positions.push({ label: key[0], value });
+  for (let i = 0; i < initialPiles.length; i++) {
+    const value = memo.get(ALPHA[i] + pileStr);
+    if (value !== undefined) {
+      positions.push({ label: ALPHA[i], value });
     }
   }
 
